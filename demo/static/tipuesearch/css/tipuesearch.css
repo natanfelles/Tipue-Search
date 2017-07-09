@@ -44,7 +44,7 @@ http://www.tipue.com/search
 	border-radius: 0;
 	-moz-appearance: none;
 	-webkit-appearance: none;
-     box-shadow: none; 
+     box-shadow: none;
 	outline: 0;
 	margin: 0;
 }
@@ -66,6 +66,9 @@ http://www.tipue.com/search
 
 /* search results */
 
+.list-group a {
+     text-decoration: none;
+}
 
 #tipue_search_content
 {
@@ -79,7 +82,7 @@ http://www.tipue.com/search
 }
 #tipue_search_warning
 {
-     color: #333;    
+     color: #333;
 	margin: 7px 0;
 }
 #tipue_search_warning a
@@ -89,35 +92,34 @@ http://www.tipue.com/search
 }
 #tipue_search_warning a:hover
 {
-     color: #555;  
+     color: #555;
 }
 .tipue_search_content_title
 {
-     color: #666;    
-	margin-top: 21px;
+     color: #666;
+	 margin: 21px 0 0;
 }
-.tipue_search_content_title a
+.tipue_search_content_title
 {
      color: #666;
      text-decoration: none;
 }
-.tipue_search_content_title a:hover
-{
-     color: #666;
-}
+
 .tipue_search_content_url
 {
      word-wrap: break-word;
      hyphens: auto;
 }
-.tipue_search_content_url a, .tipue_search_related_text a
+.tipue_search_content_url, a.tipue_search_related_text
 {
      color: #5396ea;
      text-decoration: none;
+     min-width: 230px;
+     display: block;
 }
-.tipue_search_content_url a:hover, .tipue_search_related_text a:hover, .tipue_search_related_before, .tipue_search_related_after
+.tipue_search_content_url:hover, a.tipue_search_related_text:hover, .tipue_search_related_before, .tipue_search_related_after
 {
-     color: #555;   
+     color: #555;
 }
 .tipue_search_content_text
 {
@@ -224,7 +226,7 @@ http://www.tipue.com/search
      0%, 40%, 100%
      {
           -webkit-transform: scaleY(0.4)
-     }  
+     }
      20%
      {
           -webkit-transform: scaleY(1.0)
@@ -233,19 +235,13 @@ http://www.tipue.com/search
 @keyframes stretchdelay
 {
      0%, 40%, 100%
-     { 
+     {
           transform: scaleY(0.4);
           -webkit-transform: scaleY(0.4);
      }
      20%
-     { 
+     {
           transform: scaleY(1.0);
           -webkit-transform: scaleY(1.0);
      }
 }
-
-
-
-
-
-
