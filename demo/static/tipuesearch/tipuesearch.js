@@ -346,16 +346,16 @@ http://www.tipue.com/search
                          
                               if (show_replace)
                               {
-                                   out += '<div id="tipue_search_warning">' + tipuesearch_string_2 + ' ' + d + '. ' + tipuesearch_string_3 + ' <a id="tipue_search_replaced">' + d_r + '</a></div>';
+                                   out += '<div id="tipue_search_warning" class="alert alert-info">' + tipuesearch_string_2 + ' <em>' + d + '</em>. ' + tipuesearch_string_3 + ' <a id="tipue_search_replaced" class="alert-link">' + d_r + '</a></div>';
                               }
                               if (c == 1)
                               {
-                                   out += '<div id="tipue_search_results_count">' + tipuesearch_string_4;
+                                   out += '<div id="tipue_search_results_count" class="text-muted text-right">' + tipuesearch_string_4;
                               }
                               else
                               {
                                    c_c = c.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                   out += '<div id="tipue_search_results_count">' + c_c + ' ' + tipuesearch_string_5;
+                                   out += '<div id="tipue_search_results_count" class="text-muted text-right">' + c_c + ' ' + tipuesearch_string_5;
                               }
                               if (set.showTime)
                               {
@@ -368,16 +368,18 @@ http://www.tipue.com/search
                               
                               found.sort(function(a, b) { return b.score - a.score } );
                               
+                              out += '<div class="list-group">';
                               var l_o = 0;
                               for (var i = 0; i < found.length; i++)
                               {
                                    if (l_o >= start && l_o < set.show + start)
-                                   {                                   
-                                        out += '<div class="tipue_search_content_title"><a href="' + found[i].url + '"' + tipue_search_w + '>' +  found[i].title + '</a></div>';
+                                   {             
+
+                                        out += '<a href="' + found[i].url + '" class="list-group-item"' + tipue_search_w + '><h4 class="tipue_search_content_title list-group-item-heading">' +  found[i].title + '</h4>';
  
                                         if (set.debug)
                                         {                                             
-                                             out += '<div class="tipue_search_content_debug">Score: ' + found[i].score + '</div>';
+                                             out += '<div class="tipue_search_content_debug text-danger">Score: ' + found[i].score + '</div>';
                                         }
                                         
                                         if (set.showURL)
@@ -387,7 +389,7 @@ http://www.tipue.com/search
                                              {
                                                   s_u = s_u.slice(7);
                                              }                                             
-                                             out += '<div class="tipue_search_content_url"><a href="' + found[i].url + '"' + tipue_search_w + '>' + s_u + '</a></div>';
+                                             out += '<div class="tipue_search_content_url text-muted">' + s_u + '</div>';
                                         }
                                         
                                         if (found[i].desc)
@@ -427,7 +429,7 @@ http://www.tipue.com/search
                                              else if (set.highlightTerms)
                                              {
                                                   var patr = new RegExp('(' + d + ')', 'gi');
-                                                  t = t.replace(patr, "<span class=\"tipue_search_content_bold\">$1</span>");
+                                                  t = t.replace(patr, "<strong class=\"tipue_search_content_bold\">$1</strong>");
                                              }
                                                                                   
                                              var t_d = '';
@@ -440,7 +442,7 @@ http://www.tipue.com/search
                                              {
                                                   for (var f = 0; f < set.descriptiveWords; f++)
                                                   {
-                                                       t_d += t_w[f] + ' '; 	
+                                                       t_d += t_w[f] + ' ';     
                                                   }
                                              }
                                              t_d = $.trim(t_d);
@@ -449,14 +451,16 @@ http://www.tipue.com/search
                                                   t_d += ' ...';
                                              }
                                              
-                                             t_d = t_d.replace(/h0011/g, 'span class=\"tipue_search_content_bold\"');
-                                             t_d = t_d.replace(/h0012/g, '/span');
+                                             t_d = t_d.replace(/h0011/g, 'strong class=\"tipue_search_content_bold\"');
+                                             t_d = t_d.replace(/h0012/g, '/strong');
                                              
-                                             out += '<div class="tipue_search_content_text">' + t_d + '</div>';
+                                             out += '<p class="tipue_search_content_text list-group-item-text">' + t_d + '</p></a>';
                                         }
                                    }
                                    l_o++;     
                               }
+                              out += '</div>';
+                              console.log(out);
                                    
                               if (set.showRelated && standard)
                               {
@@ -471,26 +475,26 @@ http://www.tipue.com/search
                                              }
                                              if (!f)
                                              {
-                                                  out += '<div class="tipue_search_related_title">' + tipuesearch_string_15 + ' <span class="tipue_search_related_bold">' + d_o + '</span></div><div class="tipue_search_related_cols">';
+                                                  out += '<div class="panel panel-default"><div class="tipue_search_related_title panel-heading">' + tipuesearch_string_15 + ' <strong class="tipue_search_related_bold">' + d_o + '</strong></div><div class="tipue_search_related_cols list-group">';
                                              }
                                              
-                                             out += '<div class="tipue_search_related_text"><a class="tipue_search_related" id="' + tipuesearch_related.searches[i].related + '">';
+                                             out += '<a class="tipue_search_related_text list-group-item" id="' + tipuesearch_related.searches[i].related + '">';
                                              if (tipuesearch_related.searches[i].before)
                                              {
-                                                  out += '<span class="tipue_search_related_before">' + tipuesearch_related.searches[i].before + '</span> ';    
+                                                  out += '<span class="tipue_search_related_before label label-default">' + tipuesearch_related.searches[i].before + '</span> ';    
                                              }
                                              out += tipuesearch_related.searches[i].related;
                                              if (tipuesearch_related.searches[i].after)
                                              {
-                                                  out += ' <span class="tipue_search_related_after">' + tipuesearch_related.searches[i].after + '</span>';    
+                                                  out += ' <span class="tipue_search_related_after label label-default">' + tipuesearch_related.searches[i].after + '</span>';    
                                              }
-                                             out += '</a></div>';                                            
+                                             out += '</a>';                                            
                                              f++;         
                                         }
                                    }
                                    if (f)
                                    {
-                                        out += '</div>';
+                                        out += '</div></div>';
                                    }      
                               }
                               
@@ -498,9 +502,9 @@ http://www.tipue.com/search
                               {
                                    var pages = Math.ceil(c / set.show);
                                    var page = (start / set.show);
-                                   out += '<nav><div id="tipue_search_foot"><ul id="tipue_search_foot_boxes">';
+                                   out += '<nav class="text-center"><div id="tipue_search_foot"><ul id="tipue_search_foot_boxes" class="pagination">';
                                    
-                                   if (start > 0)
+                                   if (start > 0) 
                                    {
                                        out += '<li role="navigation"><a class="tipue_search_foot_box" accesskey="b" id="' + (start - set.show) + '_' + replace + '">' + tipuesearch_string_6 + '</a></li>'; 
                                    }
@@ -516,7 +520,7 @@ http://www.tipue.com/search
                                         {
                                              if (f == page)
                                              {
-                                                  out += '<li class="current" role="navigation">' + (f + 1) + '</li>';
+                                                  out += '<li class="current active" role="navigation"><span>' + (f + 1) + ' <span class="sr-only">(current)</span></span></li>';
                                              }
                                              else
                                              {
@@ -535,7 +539,7 @@ http://www.tipue.com/search
                                         {
                                              if (f == page)
                                              {
-                                                  out += '<li class="current" role="navigation">' + (f + 1) + '</li>';
+                                                  out += '<li class="current active" role="navigation"><span>' + (f + 1) + '</span></li>';
                                              }
                                              else
                                              {
@@ -554,30 +558,35 @@ http://www.tipue.com/search
                          }
                          else
                          {
-                              out += '<div id="tipue_search_warning">' + tipuesearch_string_8 + '</div>'; 
+                              out += '<div id="tipue_search_warning" class="alert alert-danger"' + tipuesearch_string_8 + '</div>'; 
                          }
                     }
                     else
                     {
                          if (show_stop)
                          {
-                              out += '<div id="tipue_search_warning">' + tipuesearch_string_8 + '. ' + tipuesearch_string_9 + '</div>';     
+                              out += '<div id="tipue_search_warning" class="alert alert-danger">' + tipuesearch_string_8 + ' ' + tipuesearch_string_9 + '</div>';     
                          }
                          else
                          {
-                              out += '<div id="tipue_search_warning">' + tipuesearch_string_10 + '</div>';
+                              out += '<div id="tipue_search_warning" class="alert alert-danger"><strong>' + tipuesearch_string_10 + '</strong><ul>';
                               if (set.minimumLength == 1)
                               {
-                                   out += '<div id="tipue_search_warning">' + tipuesearch_string_11 + '</div>';
+                                   out += '<li>' + tipuesearch_string_11 + '</li>';
                               }
                               else
                               {
-                                   out += '<div id="tipue_search_warning">' + tipuesearch_string_12 + ' ' + set.minimumLength + ' ' + tipuesearch_string_13 + '</div>';
+                                   out += '<li>' + tipuesearch_string_12 + ' ' + set.minimumLength + ' ' + tipuesearch_string_13 + '</li>';
                               }
+                              out += '</ul></div>';
                          }
                     }                
                     
-                    $('#tipue_search_content').hide().html(out).slideDown(200);
+                    $('#tipue_search_content').hide().html(out).animate({
+                         opacity: 'toggle'
+                    }, 500, function() {
+                         $(this).show();
+                    });
                     
                     $('#tipue_search_replaced').click(function()
                     {
