@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tipue Search - Bootstrap Style</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+        a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center page-header">Tipue Search Static Mode Demo <small>Bootstrap</small></h1>
+        <form role="form">
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" id="tipue_search_input" placeholder="Search..." required>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <hr>
+        <div id="tipue_search_content"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="tipuesearch/tipuesearch_set.js"></script>
+    <script type="text/javascript" src="tipuesearch/tipuesearch_content.js"></script>
+    <script type="text/javascript" src="tipuesearch/tipuesearch.min.js"></script>
+    <script>
+        $(document).ready(function() {
+             $('#tipue_search_input').tipuesearch({
+                'debug': true,
+                'show': 3,
+                'wholeWords': false,
+                'minimumLength': 2,
+             });
+        });
+    </script>
+</body>
+</html>
